@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suba Mart - Home</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        header {
+            background: #6d28d9;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .hero {
+            padding: 75px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #ede9fe, #fae8ff);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #5b21b6;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #475569;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 13px 25px;
+            background: #6d28d9;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .section {
+            padding: 35px 7%;
+            text-align: center;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 22px;
+            margin-top: 25px;
+        }
+
+        .product {
+            background: white;
+            padding: 25px 18px;
+            border-radius: 14px;
+            box-shadow: 0 3px 14px #0000000d;
+        }
+
+        .product .emoji {
+            font-size: 48px;
+        }
+
+        .product h3 {
+            color: #5b21b6;
+        }
+
+        .product a {
+            display: inline-block;
+            padding: 10px 16px;
+            background: #6d28d9;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #1e1b4b;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            nav a {
+                margin-left: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🛍️ Suba Mart</h2>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Welcome to Suba Mart!</h1>
+    <p>Discover your favourites at prices you'll love.</p>
+    <p>Fashion, footwear and everyday essentials — all in one place.</p>
+    <a class="btn" href="products.html">Shop Now</a>
+</section>
+
+<section class="section">
+    <h2>Explore Our Categories</h2>
+    <p>Find something special for yourself.</p>
+
+    <div class="products">
+
+        <div class="product">
+            <div class="emoji">👕</div>
+            <h3>Fashion</h3>
+            <p>Comfortable and stylish clothing.</p>
+            <a href="products.html">Explore</a>
+        </div>
+
+        <div class="product">
+            <div class="emoji">👟</div>
+            <h3>Footwear</h3>
+            <p>Everyday shoes for every occasion.</p>
+            <a href="products.html">Explore</a>
+        </div>
+
+        <div class="product">
+            <div class="emoji">🎒</div>
+            <h3>Accessories</h3>
+            <p>Useful accessories for your lifestyle.</p>
+            <a href="products.html">Explore</a>
+        </div>
+
+        <div class="product">
+            <div class="emoji">🛒</div>
+            <h3>Best Deals</h3>
+            <p>Discover products for your shopping list.</p>
+            <a href="products.html">Explore</a>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Suba Mart. All rights reserved.</p>
+    <p>Your shopping, your style!</p>
+</footer>
+
+</body>
+</html>
+

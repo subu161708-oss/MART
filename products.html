@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Suba Mart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        header {
+            background: #6d28d9;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .heading {
+            text-align: center;
+            padding: 35px 15px 10px;
+        }
+
+        .heading h1 {
+            color: #5b21b6;
+        }
+
+        .search {
+            display: block;
+            width: 90%;
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            padding: 25px 6%;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 4px 15px #0000000d;
+        }
+
+        .emoji {
+            font-size: 55px;
+        }
+
+        .price {
+            color: #6d28d9;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        button {
+            background: #6d28d9;
+            color: white;
+            border: none;
+            padding: 11px 15px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5b21b6;
+        }
+
+        input[type="number"] {
+            width: 65px;
+            padding: 8px;
+            margin: 10px;
+        }
+
+        .message {
+            text-align: center;
+            color: #15803d;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #1e1b4b;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🛍️ Suba Mart</h2>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<section class="heading">
+    <h1>Our Products</h1>
+    <p>Find your favourite products at Suba Mart.</p>
+</section>
+
+<input class="search" id="search"
+       type="search" placeholder="Search products..."
+       oninput="filterProducts()">
+
+<p class="message" id="message"></p>
+
+<section class="products" id="productList">
+
+    <article class="card" data-name="Cotton T-Shirt">
+        <div class="emoji">👕</div>
+        <h3>Cotton T-Shirt</h3>
+        <p>Comfortable everyday cotton T-shirt.</p>
+        <p class="price">₹499</p>
+        <form action="place-order" method="post">
+            <input type="hidden" name="productId" value="1">
+            <label>Qty:
+                <input type="number" name="quantity"
+                       value="1" min="1" max="100" required>
+            </label>
+            <br>
+            <button type="submit">Buy Now</button>
+        </form>
+    </article>
+
+    <article class="card" data-name="Casual Shirt">
+        <div class="emoji">👔</div>
+        <h3>Casual Shirt</h3>
+        <p>Stylish casual shirt for daily wear.</p>
+        <p class="price">₹799</p>
+        <form action="place-order" method="post">
+            <input type="hidden" name="productId" value="2">
+            <label>Qty:
+                <input type="number" name="quantity"
+                       value="1" min="1" max="100" required>
+            </label>
+            <br>
+            <button type="submit">Buy Now</button>
+        </form>
+    </article>
+
+    <article class="card" data-name="Running Shoes">
+        <div class="emoji">👟</div>
+        <h3>Running Shoes</h3>
+        <p>Lightweight shoes for everyday use.</p>
+        <p class="price">₹1,499</p>
+        <form action="place-order" method="post">
+            <input type="hidden" name="productId" value="3">
+            <label>Qty:
+                <input type="number" name="quantity"
+                       value="1" min="1" max="100" required>
+            </label>
+            <br>
+            <button type="submit">Buy Now</button>
+        </form>
+    </article>
+
+    <article class="card" data-name="Travel Backpack">
+        <div class="emoji">🎒</div>
+        <h3>Travel Backpack</h3>
+        <p>Spacious backpack for travel.</p>
+        <p class="price">₹999</p>
+        <form action="place-order" method="post">
+            <input type="hidden" name="productId" value="4">
+            <label>Qty:
+                <input type="number" name="quantity"
+                       value="1" min="1" max="100" required>
+            </label>
+            <br>
+            <button type="submit">Buy Now</button>
+        </form>
+    </article>
+
+</section>
+
+<footer>
+    <p>© 2026 Suba Mart. All rights reserved.</p>
+</footer>
+
+<script>
+    function filterProducts() {
+        const query = document.getElementById("search")
+            .value.toLowerCase();
+
+        const cards = document.querySelectorAll(".card");
+        let count = 0;
+
+        cards.forEach(function(card) {
+            const name = card.dataset.name.toLowerCase();
+            const matches = name.includes(query);
+
+            card.style.display = matches ? "" : "none";
+
+            if (matches) {
+                count++;
+            }
+        });
+
+        document.getElementById("message").textContent =
+            count === 0 ? "No products found." : "";
+    }
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("review") === "success") {
+        document.getElementById("message").textContent =
+            "Thank you! Your review has been submitted.";
+    }
+</script>
+
+</body>
+</html>

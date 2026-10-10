@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Suba Mart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #4c1d95;
+            color: white;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .container {
+            padding: 30px 6%;
+        }
+
+        h1 {
+            color: #4c1d95;
+        }
+
+        .subtitle {
+            color: #64748b;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px #0000000d;
+        }
+
+        .card .icon {
+            font-size: 35px;
+        }
+
+        .card h3 {
+            color: #6d28d9;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #6d28d9;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .notice {
+            background: #fff7ed;
+            color: #9a3412;
+            padding: 15px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e1b4b;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🛍️ Suba Mart Admin</h2>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1>Admin Dashboard</h1>
+    <p class="subtitle">Welcome to the Suba Mart administration panel.</p>
+
+    <div class="cards">
+
+        <section class="card">
+            <div class="icon">📦</div>
+            <h3>Products</h3>
+            <p>Browse the products available in the store.</p>
+            <a class="btn" href="products.html">View Products</a>
+        </section>
+
+        <section class="card">
+            <div class="icon">🛒</div>
+            <h3>Orders</h3>
+            <p>View your orders after logging in.</p>
+            <a class="btn" href="my-orders">My Orders</a>
+        </section>
+
+        <section class="card">
+            <div class="icon">🏪</div>
+            <h3>Seller Portal</h3>
+            <p>Open the seller information page.</p>
+            <a class="btn" href="seller.html">Seller Page</a>
+        </section>
+
+        <section class="card">
+            <div class="icon">⭐</div>
+            <h3>Customer Reviews</h3>
+            <p>Submit product reviews from the products page.</p>
+            <a class="btn" href="products.html">View Products</a>
+        </section>
+
+    </div>
+
+    <div class="notice">
+        <strong>Note:</strong> This is the initial dashboard interface.
+        Live statistics, product management, and order management
+        require database-connected admin features and server-side
+        authorization.
+    </div>
+</main>
+
+<footer>
+    <p>© 2026 Suba Mart. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+

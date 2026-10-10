@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Suba Mart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        header {
+            background: #6d28d9;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px #0000000d;
+        }
+
+        h1 {
+            color: #5b21b6;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 18px 0;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .emoji {
+            font-size: 35px;
+        }
+
+        input {
+            width: 65px;
+            padding: 8px;
+        }
+
+        button, .shop {
+            background: #6d28d9;
+            color: white;
+            border: none;
+            padding: 11px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .remove {
+            background: #dc2626;
+        }
+
+        .summary {
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        .total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6d28d9;
+        }
+
+        .empty {
+            color: #64748b;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer {
+            background: #1e1b4b;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                margin: 15px;
+                padding: 16px;
+            }
+
+            .item {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🛍️ Suba Mart</h2>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>🛒 My Shopping Cart</h1>
+
+    <div id="cartItems"></div>
+
+    <div class="summary">
+        <p>Subtotal</p>
+        <p class="total" id="total">₹0.00</p>
+
+        <button onclick="checkout()">Proceed to Checkout</button>
+        <br><br>
+        <a class="shop" href="products.html">Continue Shopping</a>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Suba Mart. All rights reserved.</p>
+</footer>
+
+<script>
+    const products = [
+        { id: 1, name: "Cotton T-Shirt", price: 499, emoji: "👕" },
+        { id: 2, name: "Casual Shirt", price: 799, emoji: "👔" },
+        { id: 3, name: "Running Shoes", price: 1499, emoji: "👟" },
+        { id: 4, name: "Travel Backpack", price: 999, emoji: "🎒" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem("subaMartCart") || "[]");
+
+    function renderCart() {
+        const container = document.getElementById("cartItems");
+        container.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+            container.innerHTML =
+                '<p class="empty">Your cart is empty. Visit Products to start shopping!</p>';
+        }
+
+        cart.forEach(function(item, index) {
+            const product = products.find(p => p.id === item.id);
+
+            if (!product) return;
+
+            const quantity = Math.max(1, Number(item.quantity) || 1);
+            total += product.price * quantity;
+
+            const row = document.createElement("div");
+            row.className = "item";
+
+            const info = document.createElement("div");
+            info.className = "item-info";
+
+            const emoji = document.createElement("span");
+            emoji.className = "emoji";
+            emoji.textContent = product.emoji;
+
+            const details = document.createElement("div");
+            const name = document.createElement("strong");
+            name.textContent = product.name;
+
+            const price = document.createElement("p");
+            price.textContent = "₹" + product.price;
+
+            details.append(name, price);
+            info.append(emoji, details);
+
+            const controls = document.createElement("div");
+
+            const qty = document.createElement("input");
+            qty.type = "number";
+            qty.min = "1";
+            qty.max = "100";
+            qty.value = quantity;
+            qty.setAttribute("aria-label", "Quantity");
+
+            qty.addEventListener("change", function() {
+                const value = Number(qty.value);
+
+                if (!Number.isInteger(value) || value < 1 || value > 100) {
+                    alert("Quantity must be between 1 and 100.");
+                    renderCart();
+                    return;
+                }
+
+                cart[index].quantity = value;
+                saveCart();
+            });
+
+            const remove = document.createElement("button");
+            remove.className = "remove";
+            remove.textContent = "Remove";
+            remove.style.marginLeft = "8px";
+
+            remove.addEventListener("click", function() {
+                cart.splice(index, 1);
+                saveCart();
+            });
+
+            controls.append(qty, remove);
+            row.append(info, controls);
+            container.appendChild(row);
+        });
+
+        document.getElementById("total").textContent =
+            "₹" + total.toFixed(2);
+    }
+
+    function saveCart() {
+        localStorage.setItem("subaMartCart", JSON.stringify(cart));
+        renderCart();
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        alert("Please log in before placing your order.");
+        window.location.href = "login.html";
+    }
+
+    renderCart();
+</script>
+
+</body>
+</html>
+

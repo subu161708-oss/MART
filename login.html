@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suba Mart - Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #fce7f3);
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px #00000018;
+        }
+
+        h1 {
+            text-align: center;
+            color: #6d28d9;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input {
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background: #6d28d9;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5b21b6;
+        }
+
+        .toggle {
+            background: transparent;
+            color: #6d28d9;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Suba Mart</h1>
+    <p>Your shopping, your style!</p>
+
+    <form id="loginForm" action="login" method="post">
+        <h2>Login</h2>
+
+        <input type="hidden" name="action" value="login">
+
+        <input type="email" name="email"
+               placeholder="Email address" required>
+
+        <input type="password" name="password"
+               placeholder="Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <form id="registerForm" action="login" method="post"
+          class="hidden">
+        <h2>Create Account</h2>
+
+        <input type="hidden" name="action" value="register">
+
+        <input type="text" name="name"
+               placeholder="Full name" required>
+
+        <input type="email" name="email"
+               placeholder="Email address" required>
+
+        <input type="password" name="password"
+               placeholder="Create password" minlength="8" required>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <button class="toggle" type="button" onclick="toggleForms()">
+        New customer? Register here
+    </button>
+</div>
+
+<script>
+    function toggleForms() {
+        const login = document.getElementById("loginForm");
+        const register = document.getElementById("registerForm");
+        const showingLogin = register.classList.contains("hidden");
+
+        login.classList.toggle("hidden");
+        register.classList.toggle("hidden");
+
+        document.querySelector(".toggle").textContent =
+            showingLogin ? "Already registered? Login here"
+                         : "New customer? Register here";
+    }
+</script>
+</body>
+</html>
+
